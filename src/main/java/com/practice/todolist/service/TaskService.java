@@ -22,9 +22,12 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public void deleteTask(Long id){
-
-        taskRepository.deleteById(id);
+    public void deleteTask(Long id) {
+        if (taskRepository.existsById(id)) {
+            taskRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Task with ID " + id + " does not exist.");
+        }
     }
 
 

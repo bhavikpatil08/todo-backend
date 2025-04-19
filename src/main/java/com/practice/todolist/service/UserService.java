@@ -21,7 +21,18 @@ public class UserService {
 
         return userRepository.save(user);
     }
-     public User updateUser(Long id, User updatedUser) {
+
+    public void deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("User with ID " + id + " does not exist.");
+        }
+    }
+
+
+
+    public User updateUser(Long id, User updatedUser) {
          User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found with id: " + id));
 
          existingUser.setUsername(updatedUser.getUsername());
