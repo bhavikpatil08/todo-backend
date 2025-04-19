@@ -31,6 +31,10 @@ public class TaskService {
     public Task updateTask(Long id, Task updateTask){
         Task existingTask = taskRepository.findById (id).orElseThrow(() -> new RuntimeException("task not found with id: " + id));
 
+        if (updateTask.getPriority() == null) {
+            throw new IllegalArgumentException("Priority cannot be null");
+        }
+
         existingTask.setTitle(updateTask.getTitle());
         existingTask.setDescription(updateTask.getDescription());
         existingTask.setPriority(updateTask.getPriority());

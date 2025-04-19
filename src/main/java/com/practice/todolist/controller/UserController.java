@@ -1,5 +1,6 @@
 package com.practice.todolist.controller;
 
+import com.practice.todolist.entity.Task;
 import com.practice.todolist.entity.User;
 import com.practice.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class UserController {
     @GetMapping
     public List<User> getAllUser(){
         return userService.getAllUser();
+    }
+
+    @PostMapping
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
     }
 
     @PutMapping("/{id}")

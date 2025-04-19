@@ -1,9 +1,6 @@
 package com.practice.todolist.entity;
 
-
-import jakarta.annotation.Priority;
 import jakarta.persistence.*;
-import jakarta.transaction.Status;
 import jdk.jshell.Snippet;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 public class Task {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -29,7 +27,7 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Priority priority;
+    private Priority priority = Priority.Medium;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
